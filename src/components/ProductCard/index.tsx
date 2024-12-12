@@ -14,7 +14,7 @@ export default function ProductCard({ productItem }: Props) {
 
   const status = () => {
     if (!productItem.discount) {
-      if (date > 30) {
+      if (date < 30) {
         return ['product-new', 'New']
       } else return ''
     } else {

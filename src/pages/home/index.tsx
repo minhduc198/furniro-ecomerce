@@ -11,10 +11,19 @@ import { getListProduct } from '../../services'
 export default function Home() {
   const navigate = useNavigate()
   const [ourProducts, setOurProducts] = useState<IDataProduct[]>([])
+  const [getProductFromData, setGetProductFromData] = useState(8)
 
   const getData = async () => {
-    const productData = await getListProduct(1, 8)
+    const productData = await getListProduct(1, getProductFromData)
     setOurProducts(productData.data)
+  }
+
+  const getMoreProduct = () => {
+    if (getProductFromData >= 32) {
+      setGetProductFromData(8)
+    } else {
+      setGetProductFromData(getProductFromData + 8)
+    }
   }
 
   const goToShop = () => {
@@ -23,7 +32,7 @@ export default function Home() {
 
   useEffect(() => {
     getData()
-  }, [])
+  }, [getProductFromData])
 
   return (
     <div className='container home'>
@@ -72,6 +81,9 @@ export default function Home() {
           {ourProducts.map((productItem: IDataProduct) => (
             <ProductCard key={productItem.id} productItem={productItem} />
           ))}
+        </div>
+        <div className='btn-show-more' onClick={getMoreProduct}>
+          {getProductFromData <= 31 ? 'Show More' : 'Show Less'}
         </div>
       </div>
     </div>
