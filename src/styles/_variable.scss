@@ -1,6 +1,36 @@
+@use './mixin' as *;
+
 :root {
+  --cl-black-50: #3a3a3a;
   --cl-black: #000;
   --cl-white: #fff;
-  --cl-gray-light: #f1f1f1;
+  --cl-white-200: #f4f5f7;
   --cl-gray: #d9d9d9;
+  --cl-gray-100: #f1f1f1;
+  --cl-gray-150: #b0b0b0;
+  --cl-gray-200: #898989;
+  --cl-gray-300: #9f9f9f;
+  --cl-gray-400: #666666;
+  --cl-wheat: #fff3e3;
+  --cl-brown: #b88e2f;
+  --cl-pink: #e97171;
+  --cl-green: #2ec1ac;
+
+  --gutter: 0px;
+  --productGap: 32px;
+  --productColumn: 4;
+
+  @include responsive(LG) {
+    --productGap: 20px;
+  }
+
+  @include responsive(MD) {
+    --productColumn: 3;
+    --gutter: 50px;
+  }
+
+  @include responsive(SM) {
+    --productColumn: 1;
+    --gutter: 20px;
+  }
 }

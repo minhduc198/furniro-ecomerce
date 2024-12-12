@@ -18,6 +18,14 @@
   .menu {
     display: flex;
     gap: 75px;
+
+    &-item {
+      padding-bottom: 5px;
+    }
+
+    &-item-active {
+      border-bottom: 2px solid var(--cl-black);
+    }
   }
 
   &-action {
@@ -120,8 +128,13 @@
         transition: all 0.2s linear;
 
         &:hover {
-          background: var(--cl-gray-light);
+          background: var(--cl-gray-100);
         }
+      }
+
+      &-item-active {
+        background: var(--cl-gray-100);
+        border-bottom: none;
       }
     }
   }

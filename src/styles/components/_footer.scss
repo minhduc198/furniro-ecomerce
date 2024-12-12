@@ -1,0 +1,134 @@
+@use '../mixin' as *;
+
+.footer {
+  padding: 48px 100px 38px;
+  border-top: 1px solid var(--cl-gray);
+  margin-top: 100px;
+
+  &-wrapper {
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--cl-gray);
+    display: flex;
+  }
+
+  &-logo {
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  &-title {
+    color: var(--cl-gray-300);
+    margin-top: 50px;
+    max-width: 295px;
+  }
+
+  .inform-help {
+    margin-left: 144px;
+  }
+
+  .inform-newsletter {
+    margin-left: 72px;
+  }
+
+  &-content {
+    display: flex;
+  }
+
+  &-inform {
+    margin-left: 136px;
+    display: flex;
+
+    .links-title {
+      color: var(--cl-gray-300);
+    }
+
+    .links-content {
+      display: flex;
+      flex-direction: column;
+      gap: 46px;
+      margin-top: 55px;
+    }
+
+    .input {
+      margin-top: 53px;
+
+      &-form {
+        display: flex;
+        gap: 11px;
+
+        input {
+          border: 0;
+          outline: none;
+          font-size: 14px;
+          line-height: 21px;
+          color: var(--cl-gray-300);
+          border-bottom: 1px solid var(--cl-black);
+        }
+
+        p {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 21px;
+          border-bottom: 1px solid var(--cl-black);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@include responsive(MD) {
+  .footer {
+    padding: 29px var(--gutter) 30px var(--gutter);
+
+    &-wrapper {
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+    }
+
+    &-address {
+      display: flex;
+      gap: 40px;
+    }
+
+    &-title {
+      margin-top: 0;
+    }
+
+    &-inform {
+      width: 100%;
+      margin-left: 0;
+      justify-content: space-between;
+      margin-top: 50px;
+    }
+
+    &-content {
+      display: flex;
+      gap: 30px;
+      justify-content: space-between;
+    }
+
+    .inform-help {
+      margin: 0;
+    }
+
+    .inform-newsletter {
+      margin: 0;
+    }
+  }
+}
+
+@include responsive(SM) {
+  .footer {
+    &-inform {
+      width: 100%;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    &-content {
+      margin-top: 50px;
+    }
+  }
+}

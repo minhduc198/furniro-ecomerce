@@ -6,6 +6,8 @@ import favoriteIcon from '../../assets/header/icons/favourite.svg'
 import userIcon from '../../assets/header/icons/icon-profile.svg'
 import logoFull from '../../assets/header/icons/logo-full.svg'
 import searchIcon from '../../assets/header/icons/search.svg'
+import { CustomNavLink } from '../CustomNavLink'
+import { path } from '../../routers'
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false)
@@ -35,10 +37,10 @@ export default function Header() {
                 </div>
               )}
             </div>
-            <div className='menu-item font-500 cursor-pointer'>Home</div>
-            <div className='menu-item font-500 cursor-pointer'>Shop</div>
-            <div className='menu-item font-500 cursor-pointer'>About</div>
-            <div className='menu-item font-500 cursor-pointer'>Contact</div>
+            <CustomNavLink linkName='Home' path={path.home} />
+            <CustomNavLink linkName='Shop' path={path.shop} />
+            <CustomNavLink linkName='About' path={path.about} />
+            <CustomNavLink linkName='Contact' path={path.contact} />
           </div>
           <div className='header-action'>
             <div>
