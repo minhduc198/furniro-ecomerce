@@ -56,6 +56,34 @@
   font-weight: 500;
 }
 
+.font-600 {
+  font-weight: 600;
+}
+
+.font-700 {
+  font-weight: 700;
+}
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.relative {
+  position: relative;
+  inset: 0;
+}
+
+.badge {
+  width: 15px;
+  height: 15px;
+  color: var(--cl-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: var(--cl-pink);
+  font-size: 9px;
+  position: absolute;
+  right: -8px;
+  top: -5px;
 }

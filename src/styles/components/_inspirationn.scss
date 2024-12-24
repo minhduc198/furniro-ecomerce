@@ -1,0 +1,57 @@
+@use '../mixin' as *;
+.inspiration {
+  margin-top: 69px;
+  min-height: 670px;
+  padding-left: 100px;
+  background-color: var(--cl-wheat-300);
+  display: flex;
+  align-items: center;
+  gap: 42px;
+  overflow: hidden;
+
+  &-content {
+    max-width: 422px;
+    flex-shrink: 0;
+  }
+
+  &-title {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    color: var(--cl-black-50);
+  }
+
+  &-desc {
+    margin-top: 7px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--cl-gray-500);
+  }
+
+  .btn-primary {
+    font-weight: 600;
+    line-height: 24px;
+    margin-top: 25px;
+    width: 176px;
+    height: 48px;
+  }
+
+  &-carousel {
+    position: relative;
+    inset: 0;
+    width: 100%;
+  }
+}
+
+@include responsive(MD) {
+  .inspiration {
+    flex-direction: column;
+    padding-inline: var(--gutter);
+    padding-block: 50px;
+
+    &-title {
+      font-size: 35px;
+      line-height: 43px;
+    }
+  }
+}
