@@ -8,8 +8,14 @@ import logoFull from '../../assets/header/icons/logo-full.svg'
 import searchIcon from '../../assets/header/icons/search.svg'
 import { CustomNavLink } from '../CustomNavLink'
 import { path } from '../../routers'
+import useCart from '../../hooks/useCart'
+import useFavorite from '../../hooks/useFavorite'
 
 export default function Header() {
+  const { cartState } = useCart()
+  const { favoriteState } = useFavorite()
+  const cartItemCount = cartState.items.length
+  const favoriteCount = favoriteState.items.length
   const [openMenu, setOpenMenu] = useState(false)
 
   const toggleMenu = () => setOpenMenu(!openMenu)
@@ -43,17 +49,19 @@ export default function Header() {
             <CustomNavLink linkName='Contact' path={path.contact} />
           </div>
           <div className='header-action'>
-            <div>
+            <div className='img-header-action'>
               <img className='cursor-pointer' src={userIcon} alt='' />
             </div>
-            <div>
+            <div className='img-header-action'>
               <img className='cursor-pointer' src={searchIcon} alt='' />
             </div>
-            <div>
+            <div className='relative img-header-action'>
               <img className='cursor-pointer' src={favoriteIcon} alt='' />
+              {!!favoriteCount && <div className='badge'>{favoriteCount > 9 ? '9+' : favoriteCount}</div>}
             </div>
-            <div>
+            <div className='relative img-header-action'>
               <img className='cursor-pointer' src={shoppingCartIcon} alt='' />
+              {!!cartItemCount && <div className='badge'>{cartItemCount > 9 ? '9+' : cartItemCount}</div>}
             </div>
           </div>
         </div>

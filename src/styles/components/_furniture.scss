@@ -1,3 +1,4 @@
+@use '../mixin' as *;
 .furniture {
   margin-top: 67px;
   overflow: hidden;
@@ -109,5 +110,22 @@
         height: 196px;
       }
     }
+  }
+}
+
+@include responsive(MD) {
+  .furniture-picture {
+    margin-top: 50px;
+  }
+
+  .furniture-subtitle {
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 0;
+  }
+
+  .furniture-title {
+    font-size: 30px;
+    line-height: 35px;
   }
 }

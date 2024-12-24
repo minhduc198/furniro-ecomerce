@@ -1,6 +1,7 @@
+@use '../mixin' as *;
 .inspiration {
   margin-top: 69px;
-  height: 670px;
+  min-height: 670px;
   padding-left: 100px;
   background-color: var(--cl-wheat-300);
   display: flex;
@@ -9,7 +10,7 @@
   overflow: hidden;
 
   &-content {
-    width: 422px;
+    max-width: 422px;
     flex-shrink: 0;
   }
 
@@ -36,6 +37,21 @@
   }
 
   &-carousel {
+    position: relative;
+    inset: 0;
     width: 100%;
+  }
+}
+
+@include responsive(MD) {
+  .inspiration {
+    flex-direction: column;
+    padding-inline: var(--gutter);
+    padding-block: 50px;
+
+    &-title {
+      font-size: 35px;
+      line-height: 43px;
+    }
   }
 }

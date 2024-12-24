@@ -1,4 +1,4 @@
-import { SIZE } from '../constants'
+import { CART_ACTIONS, FAVORITE_ACTIONS, SIZE } from '../constants'
 
 export interface ApiResponse<T> {
   data: T[]
@@ -20,4 +20,38 @@ export interface IDataProduct {
   sizes: SIZE[]
   colors: string[]
   images: string[]
+  quantity: number
 }
+
+export interface ICart {
+  items: IDataProduct[]
+  total: number
+}
+
+export type CartAction =
+  | {
+      type: CART_ACTIONS.ADD
+      payload: IDataProduct
+    }
+  | {
+      type: CART_ACTIONS.UPDATE
+      payload: { id: number; quantity: number }
+    }
+  | {
+      type: CART_ACTIONS.REMOVE
+      payload: { id: number }
+    }
+
+export interface IFavorite {
+  items: IDataProduct[]
+}
+
+export type FavoriteAction =
+  | {
+      type: FAVORITE_ACTIONS.ADD
+      payload: IDataProduct
+    }
+  | {
+      type: FAVORITE_ACTIONS.REMOVE
+      payload: { id: number }
+    }

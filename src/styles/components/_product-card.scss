@@ -37,6 +37,12 @@
       color: var(--cl-brown);
       cursor: pointer;
       font-weight: 600;
+      user-select: none;
+
+      &:focus,
+      &:hover {
+        opacity: 0.95;
+      }
     }
 
     .card-menu {
@@ -56,11 +62,6 @@
         font-weight: 600;
       }
     }
-
-    .menu-icon {
-      width: 16px;
-      height: 16px;
-    }
   }
 
   &-img {
@@ -71,34 +72,31 @@
     }
   }
 
-  &-discount {
+  &-state {
     position: absolute;
+    display: flex;
+    gap: 10px;
+    top: 24px;
+    right: 24px;
+  }
+
+  &-discount,
+  &-new {
     width: 48px;
     height: 48px;
-    background-color: var(--cl-pink);
     border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--cl-white);
-    inset: 0;
-    top: 24px;
-    left: calc(100% - 72px);
+  }
+
+  &-discount {
+    background-color: var(--cl-pink);
   }
 
   &-new {
-    position: absolute;
-    width: 48px;
-    height: 48px;
     background-color: var(--cl-green);
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--cl-white);
-    inset: 0;
-    top: 24px;
-    left: calc(100% - 72px);
   }
 
   &-content {
@@ -147,7 +145,7 @@
     background-color: rgba(58, 58, 58, 0.72);
     opacity: 0;
     transform: translateY(100%);
-    transition: all 0.3s linear;
+    transition: all 0.4s linear;
     position: absolute;
     inset: 0;
     z-index: 10;

@@ -14,11 +14,24 @@ export default function Carousel() {
     speed: 500,
     slidesToShow: 3.2,
     slidesToScroll: 1,
-    variableWidth: true
-    // autoplay: true,
-    // autoplaySpeed: 3000,
-    // pauseOnHover: false,
-    // className: 'slider'
+    initialSlide: 0,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 960,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   }
   return (
     <Slider {...settings}>
