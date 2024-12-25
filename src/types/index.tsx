@@ -39,7 +39,7 @@ export type CartAction =
     }
   | {
       type: CART_ACTIONS.REMOVE
-      payload: { id: number; quantity: number; price: number }
+      payload: IDataProduct
     }
 
 export interface IFavorite {
@@ -53,5 +53,5 @@ export type FavoriteAction =
     }
   | {
       type: FAVORITE_ACTIONS.REMOVE
-      payload: { id: number }
+      payload: IDataProduct
     }

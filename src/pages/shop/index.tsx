@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Shop() {
-  return <div>index</div>
+  return <div className='container shop'>index</div>
 }

@@ -10,17 +10,25 @@ import { CustomNavLink } from '../CustomNavLink'
 import { path } from '../../routers'
 import useCart from '../../hooks/useCart'
 import useFavorite from '../../hooks/useFavorite'
-import ShoppingCart from '../ShoppingCart'
+import CartProduct from '../CartProduct'
+import { CART_TYPE } from '../../constants'
 
 export default function Header() {
-  const { cartState } = useCart()
+  const { cartState, setCartType } = useCart()
   const { favoriteState } = useFavorite()
   const cartItemCount = cartState.items.length
   const favoriteCount = favoriteState.items.length
   const [openMenu, setOpenMenu] = useState(false)
-  const [openShoppingCart, setOpenShoppingCart] = useState(false)
+  const [openCart, setOpenCart] = useState(false)
 
   const toggleMenu = () => setOpenMenu(!openMenu)
+
+  const closeCart = () => setOpenCart(false)
+
+  const handleOpenCart = (type: CART_TYPE) => {
+    setCartType(type)
+    setOpenCart(true)
+  }
 
   return (
     <React.Fragment>
@@ -57,11 +65,11 @@ export default function Header() {
             <div className='img-header-action'>
               <img className='cursor-pointer' src={searchIcon} alt='' />
             </div>
-            <div className='relative img-header-action'>
+            <div className='relative img-header-action' onClick={() => handleOpenCart(CART_TYPE.FAVORITE)}>
               <img className='cursor-pointer' src={favoriteIcon} alt='' />
               {!!favoriteCount && <div className='badge'>{favoriteCount > 9 ? '9+' : favoriteCount}</div>}
             </div>
-            <div className='relative img-header-action' onClick={() => setOpenShoppingCart(true)}>
+            <div className='relative img-header-action' onClick={() => handleOpenCart(CART_TYPE.SHOPPING)}>
               <img className='cursor-pointer' src={shoppingCartIcon} alt='' />
               {!!cartItemCount && <div className='badge'>{cartItemCount > 9 ? '9+' : cartItemCount}</div>}
             </div>
@@ -69,8 +77,12 @@ export default function Header() {
         </div>
       </div>
       {openMenu && <div className='header-overlay' onClick={toggleMenu}></div>}
-      {openShoppingCart && <div className='header-overlay' onClick={() => setOpenShoppingCart(false)}></div>}
-      {openShoppingCart && <ShoppingCart setOpenShoppingCart={setOpenShoppingCart} />}
+      {openCart && (
+        <>
+          <div className='header-overlay' onClick={closeCart}></div>
+          <CartProduct onClose={closeCart} />
+        </>
+      )}
     </React.Fragment>
   )
 }

@@ -1,3 +1,5 @@
+@use '../mixin' as *;
+
 .cart-item {
   display: flex;
   align-items: center;
@@ -6,6 +8,7 @@
     width: 105px;
     height: 105px;
     border-radius: 10px;
+    flex-shrink: 0;
     overflow: hidden;
   }
 
@@ -60,4 +63,19 @@
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: var(--cl-gray-150);
+}
+
+@include responsive(SM) {
+  .cart-item {
+    &-content {
+      margin-left: 20px;
+      min-width: 130px;
+    }
+
+    .item-filter {
+      cursor: pointer;
+      user-select: none;
+      margin-left: 35px;
+    }
+  }
 }

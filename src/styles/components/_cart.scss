@@ -1,0 +1,90 @@
+@use '../mixin' as *;
+
+.cart {
+  width: 417px;
+  height: 746px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 60;
+  background-color: var(--cl-white);
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--cl-gray);
+    padding: 28px 0 26px 0;
+    margin: 0 20px 0 27px;
+  }
+
+  &-title {
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 600;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 42px;
+    height: 460px;
+    padding: 0 20px 0 27px;
+    overflow: auto;
+  }
+
+  &-subtotal {
+    margin-top: 20px;
+    display: flex;
+    border-bottom: 1px solid var(--cl-gray);
+    padding: 0 20px 20px 23px;
+
+    p {
+      line-height: 24px;
+    }
+  }
+
+  &-total-price {
+    font-weight: 600;
+    line-height: 24px;
+    color: var(--cl-brown);
+    margin-left: 100px;
+  }
+
+  &-footer {
+    margin-top: auto;
+  }
+
+  &-empty {
+    color: var(--cl-gray-200);
+    margin: auto;
+  }
+
+  &-btn {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 26px 22px 28px 27px;
+  }
+}
+
+.btn-cart,
+.btn-checkout,
+.btn-comparison {
+  padding: 6px 30px;
+  border-radius: 50px;
+  border: 1px solid var(--cl-black);
+  font-size: 12px;
+  line-height: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+@include responsive(SM) {
+  .cart {
+    width: 100%;
+    height: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+}

@@ -17,3 +17,8 @@ export enum FAVORITE_ACTIONS {
   ADD = 'ADD',
   REMOVE = 'REMOVE'
 }
+
+export enum CART_TYPE {
+  FAVORITE = 'FAVORITE',
+  SHOPPING = 'SHOPPING'
+}
