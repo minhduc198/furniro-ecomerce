@@ -10,6 +10,7 @@ import { CustomNavLink } from '../CustomNavLink'
 import { path } from '../../routers'
 import useCart from '../../hooks/useCart'
 import useFavorite from '../../hooks/useFavorite'
+import ShoppingCart from '../ShoppingCart'
 
 export default function Header() {
   const { cartState } = useCart()
@@ -17,6 +18,7 @@ export default function Header() {
   const cartItemCount = cartState.items.length
   const favoriteCount = favoriteState.items.length
   const [openMenu, setOpenMenu] = useState(false)
+  const [openShoppingCart, setOpenShoppingCart] = useState(false)
 
   const toggleMenu = () => setOpenMenu(!openMenu)
 
@@ -59,7 +61,7 @@ export default function Header() {
               <img className='cursor-pointer' src={favoriteIcon} alt='' />
               {!!favoriteCount && <div className='badge'>{favoriteCount > 9 ? '9+' : favoriteCount}</div>}
             </div>
-            <div className='relative img-header-action'>
+            <div className='relative img-header-action' onClick={() => setOpenShoppingCart(true)}>
               <img className='cursor-pointer' src={shoppingCartIcon} alt='' />
               {!!cartItemCount && <div className='badge'>{cartItemCount > 9 ? '9+' : cartItemCount}</div>}
             </div>
@@ -67,6 +69,8 @@ export default function Header() {
         </div>
       </div>
       {openMenu && <div className='header-overlay' onClick={toggleMenu}></div>}
+      {openShoppingCart && <div className='header-overlay' onClick={() => setOpenShoppingCart(false)}></div>}
+      {openShoppingCart && <ShoppingCart setOpenShoppingCart={setOpenShoppingCart} />}
     </React.Fragment>
   )
 }

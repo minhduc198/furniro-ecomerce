@@ -5,6 +5,7 @@ import { getFromLocalStorage, saveToLocalStorage } from '../../utils'
 
 const cartReducer = (state: ICart, action: CartAction): ICart => {
   const existingItem = state.items.find((item) => item.id === action.payload.id)
+
   let dataCart: ICart
   switch (action.type) {
     case CART_ACTIONS.ADD:
@@ -35,8 +36,13 @@ const cartReducer = (state: ICart, action: CartAction): ICart => {
       // TODO:
       return state
     case CART_ACTIONS.REMOVE:
-      // TODO:
-      return state
+      dataCart = {
+        items: state.items.filter((product) => product.id !== action.payload.id),
+        total: state.total - action.payload.quantity * action.payload.price
+      }
+
+      saveToLocalStorage(dataCart)
+      return dataCart
     default:
       return state
   }

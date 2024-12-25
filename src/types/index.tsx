@@ -39,7 +39,7 @@ export type CartAction =
     }
   | {
       type: CART_ACTIONS.REMOVE
-      payload: { id: number }
+      payload: { id: number; quantity: number; price: number }
     }
 
 export interface IFavorite {
