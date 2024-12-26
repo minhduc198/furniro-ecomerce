@@ -46,7 +46,7 @@
     height: 100%;
     background-color: var(--cl-black);
     opacity: 0.2;
-    z-index: 5;
+    z-index: 40;
   }
 
   .hamburger-menu,
@@ -111,7 +111,7 @@
       justify-content: space-between;
       position: absolute;
       inset: 0;
-      z-index: 30;
+      z-index: 50;
       width: max(220px, 70%);
       background: var(--cl-white);
       padding: 40px 0 20px;

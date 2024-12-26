@@ -3,6 +3,8 @@ import Layout from './layouts'
 import Home from './pages/home'
 import { path } from './routers'
 import Shop from './pages/shop'
+import Contact from './pages/contact'
+import AboutUs from './pages/about-us'
 
 function App() {
   const element = useRoutes([
@@ -22,12 +24,12 @@ function App() {
 
         {
           path: path.about,
-          element: <Shop />
+          element: <Contact />
         },
 
         {
           path: path.contact,
-          element: <Shop />
+          element: <AboutUs />
         }
       ]
     }
