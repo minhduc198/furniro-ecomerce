@@ -59,7 +59,7 @@ export default function CartProduct({ onClose }: Props) {
         <div className='cart-footer'>
           <div className='cart-subtotal'>
             <p>Subtotal</p>
-            <div className='cart-total-price'>Rs. {(cart as ICart).total}</div>
+            <div className='cart-total-price'>Rs. {(cart as ICart).total.toFixed(2)}</div>
           </div>
           <div className='cart-btn'>
             <div className='btn-cart'>Cart</div>

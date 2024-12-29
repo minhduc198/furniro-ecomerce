@@ -22,3 +22,14 @@ export enum CART_TYPE {
   FAVORITE = 'FAVORITE',
   SHOPPING = 'SHOPPING'
 }
+
+export enum SORT {
+  DESC = 'DESC',
+  ASC = 'ASC'
+}
+
+export enum CATEGORY {
+  DINING = 'Dining',
+  LIVING = 'Living',
+  BEDROOM = 'Bedroom'
+}
