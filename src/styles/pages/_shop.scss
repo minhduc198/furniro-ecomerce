@@ -1,0 +1,134 @@
+.shop {
+  margin-top: 100px;
+
+  &-filter {
+    padding: 22px 100px 23px 98px;
+    background-color: var(--cl-wheat-400);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100px;
+    transition: all 0.2s linear;
+  }
+
+  .filter-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filter-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-filter-active {
+    height: 170px;
+  }
+
+  .filter-left {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .filter-content {
+    display: flex;
+    align-items: center;
+    column-gap: 24px;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+
+    p {
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+  .filter-icon {
+    cursor: pointer;
+  }
+
+  .filter-results {
+    padding: 7px 0 6px 34px;
+    border-left: 2px solid var(--cl-gray-300);
+  }
+
+  .filter-right {
+    display: flex;
+    align-items: center;
+    gap: 29px;
+  }
+
+  .filter-show,
+  .filter-short {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  &-hero {
+    background-image: url(../../../public/img-hero-shop.png);
+    max-width: 1440px;
+    height: 316px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .shop-hero-title {
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 72px;
+    }
+  }
+
+  &-banner {
+    margin-top: 85px;
+    background-color: var(--cl-wheat-200);
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    justify-content: space-between;
+    padding: 100px 53px;
+  }
+
+  .banner-content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .banner-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .banner-title {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 37.5px;
+  }
+
+  .banner-desc {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--cl-gray-200);
+  }
+
+  .cart-list-shop {
+    margin-top: 63px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+}

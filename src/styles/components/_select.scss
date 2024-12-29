@@ -1,0 +1,11 @@
+select {
+  height: 55px;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: var(--cl-gray-300);
+
+  option {
+    color: var(--cl-gray-300);
+  }
+}

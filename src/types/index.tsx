@@ -55,3 +55,8 @@ export type FavoriteAction =
       type: FAVORITE_ACTIONS.REMOVE
       payload: IDataProduct
     }
+
+export interface ISelectOption {
+  label: string
+  value: string | number
+}
