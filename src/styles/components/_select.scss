@@ -1,9 +1,11 @@
 select {
   height: 55px;
+  width: 100%;
   border: none;
   outline: none;
   font-size: 20px;
   color: var(--cl-gray-300);
+  padding: 12px;
 
   option {
     color: var(--cl-gray-300);

@@ -60,3 +60,8 @@ export interface ISelectOption {
   label: string
   value: string | number
 }
+
+export interface IPagination {
+  pageNumber: number
+  pageSize: number
+}

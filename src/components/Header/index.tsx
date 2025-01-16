@@ -54,7 +54,7 @@ export default function Header() {
               )}
             </div>
             <CustomNavLink linkName='Home' path={path.home} />
-            <CustomNavLink linkName='Shop' path={path.shop} />
+            <CustomNavLink linkName='Shop' path={path.product} />
             <CustomNavLink linkName='About' path={path.about} />
             <CustomNavLink linkName='Contact' path={path.contact} />
           </div>

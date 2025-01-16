@@ -1,45 +1,41 @@
 import { useEffect, useMemo, useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa6'
-import { toast, ToastOptions } from 'react-toastify'
 import compare from '../../assets/cardProduct/icons/compare.svg'
 import share from '../../assets/cardProduct/icons/share.svg'
-import { CART_ACTIONS, FAVORITE_ACTIONS, PRODUCT_NEW_EXPIRE } from '../../constants'
-import useCart from '../../hooks/useCart'
+import { FAVORITE_ACTIONS, PRODUCT_NEW_EXPIRE } from '../../constants'
+// import useCart from '../../hooks/useCart'
 import useFavorite from '../../hooks/useFavorite'
 import { IDataProduct } from '../../types'
+import { useNavigate } from 'react-router'
+import { path } from '../../routers'
 
 interface Props {
   productItem: IDataProduct
 }
 
-const toastSetting: ToastOptions<unknown> = {
-  position: 'top-center',
-  autoClose: 3000,
-  hideProgressBar: true,
-  draggable: true,
-  progress: undefined,
-  theme: 'light'
-}
+// const toastSetting: ToastOptions<unknown> = {
+//   position: 'top-center',
+//   autoClose: 3000,
+//   hideProgressBar: true,
+//   draggable: true,
+//   progress: undefined,
+//   theme: 'light'
+// }
 
 export default function ProductCard({ productItem }: Props) {
   const [isFavorite, setIsFavorite] = useState(false)
-  const { dispatch } = useCart()
   const { favoriteState, dispatch: favoriteDispatch } = useFavorite()
-
-  const handleAddToCart = (productItem: IDataProduct) => {
-    dispatch({
-      type: CART_ACTIONS.ADD,
-      payload: { ...productItem, quantity: 1 }
-    })
-
-    toast.success(`Add ${productItem.name} to cart success!`, toastSetting)
-  }
+  const navigate = useNavigate()
 
   const handleFavorite = () => {
     favoriteDispatch({
       type: isFavorite ? FAVORITE_ACTIONS.REMOVE : FAVORITE_ACTIONS.ADD,
       payload: productItem
     })
+  }
+
+  const handleViewDetail = () => {
+    navigate(`${path.product}/${productItem.id}`)
   }
 
   const isNewProduct = useMemo(() => {
@@ -77,8 +73,8 @@ export default function ProductCard({ productItem }: Props) {
         </div>
       </div>
       <div className='product-action'>
-        <div className='btn-add' onClick={() => handleAddToCart(productItem)}>
-          Add to cart
+        <div className='btn-add' onClick={handleViewDetail}>
+          View detail
         </div>
         <div className='card-menu'>
           <div className='menu-action'>

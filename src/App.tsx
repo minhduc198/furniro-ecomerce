@@ -5,6 +5,7 @@ import { path } from './routers'
 import Shop from './pages/shop'
 import Contact from './pages/contact'
 import AboutUs from './pages/about-us'
+import ProductDetail from './pages/product-detail'
 
 function App() {
   const element = useRoutes([
@@ -18,7 +19,7 @@ function App() {
         },
 
         {
-          path: path.shop,
+          path: path.product,
           element: <Shop />
         },
 
@@ -30,7 +31,9 @@ function App() {
         {
           path: path.contact,
           element: <AboutUs />
-        }
+        },
+
+        { path: path.productDetail, element: <ProductDetail /> }
       ]
     }
   ])

@@ -1,11 +1,13 @@
 export enum SIZE {
   M = 'M',
   S = 'S',
-  L = 'L'
+  L = 'L',
+  XL = 'XL'
 }
 
 export const MAX_OUR_PRODUCTS = 32
 export const PRODUCT_NEW_EXPIRE = 14
+export const DOTS = '...'
 
 export enum CART_ACTIONS {
   ADD = 'ADD',

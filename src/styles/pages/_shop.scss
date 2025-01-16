@@ -1,3 +1,4 @@
+@use '../mixin' as *;
 .shop {
   margin-top: 100px;
 
@@ -7,8 +8,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 100px;
-    transition: all 0.2s linear;
   }
 
   .filter-top {
@@ -19,12 +18,11 @@
 
   .filter-bottom {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 40px;
   }
 
   &-filter-active {
-    height: 170px;
+    padding-bottom: 23px;
   }
 
   .filter-left {
@@ -53,6 +51,8 @@
 
   .filter-icon {
     cursor: pointer;
+    width: 18px;
+    height: 18px;
   }
 
   .filter-results {
@@ -67,12 +67,32 @@
   }
 
   .filter-show,
-  .filter-short {
+  .filter-sort {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 17px;
     font-size: 20px;
     line-height: 30px;
+
+    & > div:first-child {
+      flex-shrink: 0;
+      min-width: 83px;
+    }
+
+    .select-limit {
+      width: 55px;
+      height: 55px;
+
+      select {
+        padding: 0;
+      }
+    }
+
+    .select-sort {
+      width: 200px;
+      height: 55px;
+    }
   }
 
   &-hero {
@@ -128,7 +148,86 @@
   .cart-list-shop {
     margin-top: 63px;
     display: flex;
+    padding-inline: 100px;
     gap: 32px;
     flex-wrap: wrap;
+  }
+
+  .cart-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .empty-product {
+    color: var(--cl-gray-300);
+    font-size: 20px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@include responsive(MD) {
+  .shop {
+    &-filter {
+      padding-inline: var(--gutter);
+    }
+
+    .filter-top {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .cart-list-shop {
+      padding-inline: var(--gutter);
+    }
+  }
+}
+
+@include responsive(SM) {
+  .shop {
+    margin-top: unset;
+
+    &-banner {
+      padding: var(--gutter);
+      gap: 14px;
+    }
+
+    &-filter {
+      gap: 20px;
+    }
+
+    .filter-right {
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      gap: 20px;
+    }
+
+    .filter-bottom {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .filter-top {
+      align-items: start;
+    }
+
+    .banner-img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .banner-title {
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    .banner-desc {
+      font-size: 14px;
+      line-height: 18px;
+    }
   }
 }

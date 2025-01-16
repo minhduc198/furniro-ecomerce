@@ -8,7 +8,7 @@ interface Props {
 
 export default function Select({ options, handleData, defaultValue }: Props) {
   return (
-    <select defaultValue={defaultValue} onChange={handleData}>
+    <select value={defaultValue} onChange={handleData}>
       {options.map((item) => (
         <option key={item.value} value={item.value}>
           {item.label}

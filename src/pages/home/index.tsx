@@ -1,13 +1,13 @@
 import dining from '../../assets/category/images/category-dining.png'
 import living from '../../assets/category/images/category-living.png'
 import bedroom from '../../assets/category/images/category-bedroom.png'
-import { useNavigate } from 'react-router'
+import { createSearchParams, useNavigate } from 'react-router'
 import { path } from '../../routers'
 import ProductCard from '../../components/ProductCard'
 import { useEffect, useState } from 'react'
 import { IDataProduct } from '../../types'
 import { getListProduct } from '../../services'
-import { MAX_OUR_PRODUCTS } from '../../constants'
+import { CATEGORY, MAX_OUR_PRODUCTS } from '../../constants'
 import Carousel from '../../components/Carousel'
 import furniture1 from '../../assets/furniture/imgs/furniture_1.png'
 import furniture2 from '../../assets/furniture/imgs/furniture_2.png'
@@ -26,12 +26,21 @@ export default function Home() {
 
   const getData = async () => {
     limit = limit < MAX_OUR_PRODUCTS ? limit + 8 : 8
-    const productData = await getListProduct(1, limit)
-    setOurProducts(productData.data)
+    try {
+      const productData = await getListProduct(1, limit)
+      setOurProducts(productData.data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  const goToShop = () => {
-    navigate(path.shop)
+  const handleNavigateShop = (category: CATEGORY) => {
+    navigate({
+      pathname: path.product,
+      search: createSearchParams({
+        category: category
+      }).toString()
+    })
   }
 
   useEffect(() => {
@@ -57,19 +66,19 @@ export default function Home() {
         <div className='category-desc'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
         <div className='category-list'>
           <div className='category-item'>
-            <div className='category-img' onClick={() => goToShop()}>
+            <div className='category-img' onClick={() => handleNavigateShop(CATEGORY.DINING)}>
               <img src={dining} alt='' />
             </div>
             <div className='item-name'>Dining</div>
           </div>
           <div className='category-item'>
-            <div className='category-img' onClick={() => goToShop()}>
+            <div className='category-img' onClick={() => handleNavigateShop(CATEGORY.LIVING)}>
               <img src={living} alt='' />
             </div>
             <div className='item-name'>Living</div>
           </div>
           <div className='category-item'>
-            <div className='category-img' onClick={() => goToShop()}>
+            <div className='category-img' onClick={() => handleNavigateShop(CATEGORY.BEDROOM)}>
               <img src={bedroom} alt='' />
             </div>
             <div className='item-name'>Bedroom</div>

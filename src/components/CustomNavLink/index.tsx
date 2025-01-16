@@ -7,7 +7,7 @@ interface Props {
 
 export const CustomNavLink = ({ linkName, path }: Props) => {
   return (
-    <NavLink to={path}>
+    <NavLink to={path} end>
       {({ isActive }) => (
         <div className={`menu-item font-500 cursor-pointer ${isActive ? 'menu-item-active' : ''}`}>{linkName}</div>
       )}

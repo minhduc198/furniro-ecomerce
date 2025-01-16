@@ -1,3 +1,4 @@
+import { useEffect, useMemo, useState } from 'react'
 import highQuality from '../../assets/shop/icons/high-quality.svg'
 import iconFilter1 from '../../assets/shop/icons/icon-filter1.svg'
 import iconFilter2 from '../../assets/shop/icons/icon-filter2.svg'
@@ -5,26 +6,42 @@ import iconFilter3 from '../../assets/shop/icons/icon-filter3.svg'
 import protection from '../../assets/shop/icons/protection.svg'
 import shipping from '../../assets/shop/icons/shipping.svg'
 import sp from '../../assets/shop/icons/support.svg'
-import { useEffect, useState } from 'react'
 import BreadCrumb from '../../components/BreadCrumb'
+import Pagination from '../../components/Pagination'
 import ProductCard from '../../components/ProductCard'
 import Select from '../../components/Select'
-import { getListProduct } from '../../services'
-import { IDataProduct } from '../../types'
 import { CATEGORY, SORT } from '../../constants'
+import useQueryParams from '../../hooks/useQueryParams'
+import { getListProduct } from '../../services'
+import { IDataProduct, IPagination } from '../../types'
 
 interface IShopState {
   products: IDataProduct[]
-  totalItem: number
+  totalItems: number
+  totalPages: number
 }
 
+const validCategories = [CATEGORY.BEDROOM, CATEGORY.DINING, CATEGORY.LIVING]
+
 export default function Shop() {
-  const [dataToShow, setDataToShow] = useState(16)
+  const { getAllParams, setParam, deleteParam } = useQueryParams()
+  const queryParams = getAllParams()
+
   const [shopState, setShopState] = useState<IShopState>({
     products: [],
-    totalItem: 0
+    totalItems: 0,
+    totalPages: 0
   })
   const [onOpenFilter, setOnOpenFilter] = useState(false)
+  const [filterParams, setFilterParams] = useState({
+    category: '' as CATEGORY,
+    rate: 0,
+    sort: '' as SORT
+  })
+  const [pagination, setPagination] = useState<IPagination>({
+    pageNumber: 1,
+    pageSize: 8
+  })
 
   const showOptions = [
     {
@@ -60,59 +77,147 @@ export default function Shop() {
     }
   ]
 
+  const starOption = [
+    { label: 'Default', value: '' },
+    { label: '⭐', value: 1 },
+    { label: '⭐⭐', value: 2 },
+    { label: '⭐⭐⭐', value: 3 },
+    { label: '⭐⭐⭐⭐', value: 4 },
+    { label: '⭐⭐⭐⭐⭐', value: 5 }
+  ]
+
   const categoryOptions = [
+    { label: 'Default', value: '' },
     { label: CATEGORY.BEDROOM, value: CATEGORY.BEDROOM },
     { label: CATEGORY.DINING, value: CATEGORY.DINING },
     { label: CATEGORY.LIVING, value: CATEGORY.LIVING }
   ]
 
-  const getData = async () => {
-    const productData = await getListProduct(1, dataToShow)
-    setShopState({
-      products: productData.data,
-      totalItem: productData.totalItems
+  const goToPreviousPage = () => {
+    setPagination({
+      ...pagination,
+      pageNumber: pagination.pageNumber - 1
     })
   }
 
-  const handleSelectShow = (limit: React.ChangeEvent<HTMLSelectElement>) => {
-    const limitToNumber = Number(limit.target.value)
-    setDataToShow(limitToNumber)
+  const goToNextPage = () => {
+    setPagination({
+      ...pagination,
+      pageNumber: pagination.pageNumber + 1
+    })
   }
 
-  const handleDataToShort = (short: React.ChangeEvent<HTMLSelectElement>) => {
-    let sortProduct: IDataProduct[] = []
-    const copyShopProduct = [...shopState.products]
-    if (short.target.value === SORT.ASC) {
-      sortProduct = copyShopProduct.sort((a, b) => {
+  const goToPage = (page: number | string) => {
+    if (typeof page === 'string') return
+
+    setPagination({
+      ...pagination,
+      pageNumber: page
+    })
+  }
+
+  const getData = async () => {
+    try {
+      const productData = await getListProduct(pagination.pageNumber, pagination.pageSize)
+      setShopState({
+        products: productData.data,
+        totalItems: productData.totalItems,
+        totalPages: productData.totalPages
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleFilter = (name: 'limit' | 'sort' | 'category' | 'rate') => (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value
+    if (value) {
+      setParam(name, value)
+    } else {
+      deleteParam(name)
+    }
+
+    if (name === 'limit') {
+      setPagination({
+        pageSize: Number(value),
+        pageNumber: 1
+      })
+    } else {
+      setFilterParams((prev) => ({
+        ...prev,
+        [name]: value
+      }))
+    }
+  }
+
+  const renderProduct = useMemo(() => {
+    let list = [...shopState.products]
+
+    if (filterParams.category) {
+      list = list.filter((item) => item.categories === filterParams.category)
+    }
+
+    if (filterParams.rate) {
+      list = list.filter((item) => Math.floor(item.rate) === filterParams.rate)
+    }
+
+    let sortProduct: IDataProduct[] = [...list]
+    if (filterParams.sort === SORT.ASC) {
+      sortProduct = sortProduct.sort((a, b) => {
         if (a.name < b.name) return -1
         return 0
       })
     }
 
-    if (short.target.value === SORT.DESC) {
-      sortProduct = copyShopProduct.sort((a, b) => {
+    if (filterParams.sort === SORT.DESC) {
+      sortProduct = sortProduct.sort((a, b) => {
         if (a.name > b.name) return -1
         return 0
       })
     }
 
-    setShopState({
-      ...shopState,
-      products: sortProduct
-    })
-  }
-
-  const handleFilterByCategory = (item: React.ChangeEvent<HTMLSelectElement>) => {
-    const result = shopState.products.filter((product) => product.categories === item.target.value)
-    setShopState({
-      ...shopState,
-      products: result
-    })
-  }
+    return sortProduct
+  }, [filterParams.category, filterParams.sort, filterParams.rate, shopState.products])
 
   useEffect(() => {
     getData()
-  }, [dataToShow])
+  }, [pagination.pageNumber, pagination.pageSize])
+
+  useEffect(() => {
+    if (Object.keys(queryParams).length === 0) return
+
+    const category = queryParams.category as CATEGORY
+    const rate = Number(queryParams.rate)
+    const limit = Number(queryParams.limit)
+    const sort = queryParams.sort as SORT
+
+    if (category || rate) {
+      setOnOpenFilter(true)
+    }
+    const params = { ...filterParams }
+
+    if (validCategories.includes(category)) {
+      params.category = category
+    }
+
+    if (rate) {
+      params.rate = rate
+    }
+
+    if (limit) {
+      setPagination({
+        ...pagination,
+        pageSize: limit
+      })
+    }
+
+    if (sort) {
+      params.sort = sort
+    }
+
+    setFilterParams(params)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(queryParams)])
 
   return (
     <div className='container shop'>
@@ -137,33 +242,58 @@ export default function Shop() {
                 <img src={iconFilter3} alt='' />
               </div>
             </div>
-            {shopState.products.length && (
-              <div className='filter-results'>{`Showing 1–${shopState.products.length} of ${shopState.totalItem} results`}</div>
+            {!!renderProduct.length && (
+              <div className='filter-results'>{`Showing 1–${renderProduct.length} of ${shopState.totalItems} results`}</div>
             )}
           </div>
           <div className='filter-right'>
             <div className='filter-show'>
-              Show
-              <Select options={showOptions} handleData={handleSelectShow} defaultValue={dataToShow} />
+              <div>Show</div>
+              <div className='select-limit'>
+                <Select options={showOptions} handleData={handleFilter('limit')} defaultValue={pagination.pageSize} />
+              </div>
             </div>
-            <div className='filter-short'>
-              Short by
-              <Select options={sortOptions} handleData={handleDataToShort} defaultValue={''} />
+            <div className='filter-sort'>
+              <div>Sort by</div>
+              <div className='select-sort'>
+                <Select options={sortOptions} handleData={handleFilter('sort')} defaultValue={''} />
+              </div>
             </div>
           </div>
         </div>
         {onOpenFilter && (
           <div className='filter-bottom'>
-            <Select options={categoryOptions} handleData={handleFilterByCategory} defaultValue={''} />
+            <Select
+              options={categoryOptions}
+              handleData={handleFilter('category')}
+              defaultValue={queryParams.category}
+            />
+            <Select options={starOption} handleData={handleFilter('rate')} defaultValue={queryParams.rate} />
           </div>
         )}
       </div>
 
       {/* CART LIST */}
-      <div className='cart-list-shop'>
-        {shopState.products.map((item) => (
-          <ProductCard key={item.id} productItem={item} />
-        ))}
+      <div className='cart-list-container'>
+        {renderProduct.length ? (
+          <div className='cart-list-shop'>
+            {renderProduct.map((item) => (
+              <ProductCard key={item.id} productItem={item} />
+            ))}
+          </div>
+        ) : (
+          <div className='empty-product'>Sorry we can't find the product</div>
+        )}
+        <div className='pagination'>
+          <Pagination
+            siblingCount={1}
+            totalPages={shopState.totalPages}
+            currentPage={pagination.pageNumber}
+            goToNextPage={goToNextPage}
+            goToPreviousPage={goToPreviousPage}
+            goToPage={goToPage}
+          />
+        </div>
       </div>
 
       {/* BANNER */}
