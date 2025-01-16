@@ -1,0 +1,63 @@
+@use '../mixin' as *;
+.pagination-container {
+  display: flex;
+  gap: 38px;
+  margin-top: 70px;
+  align-items: center;
+}
+
+.pagination-page,
+button {
+  outline: none;
+  border: none;
+  padding: 15px 24px;
+  font-size: 20px;
+  line-height: 30px;
+  border-radius: 10px;
+  background-color: var(--cl-wheat-400);
+  cursor: pointer;
+  user-select: none;
+}
+
+.pagination-page-active {
+  background-color: var(--cl-brown);
+  color: var(--cl-white);
+}
+
+@include responsive(LG) {
+  .pagination-container {
+    gap: 28px;
+  }
+}
+
+@include responsive(MD) {
+  .pagination-container {
+    gap: 20px;
+  }
+
+  .pagination-page,
+  button {
+    padding: 12px 20px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .btn-prev,
+  .btn-next {
+    display: none;
+  }
+}
+
+@include responsive(SM) {
+  .pagination-container {
+    margin-top: 40px;
+    gap: 10px;
+  }
+
+  .pagination-page,
+  button {
+    padding: 12px 12px;
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

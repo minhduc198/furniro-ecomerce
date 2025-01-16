@@ -20,7 +20,7 @@ const cartReducer = (state: ICart, action: CartAction): ICart => {
             }
             return item
           }),
-          total: state.total + action.payload.price
+          total: state.total + action.payload.price * action.payload.quantity
         }
       } else {
         dataCart = {
@@ -40,6 +40,8 @@ const cartReducer = (state: ICart, action: CartAction): ICart => {
         items: state.items.filter((product) => product.id !== action.payload.id),
         total: state.total - action.payload.quantity * action.payload.price
       }
+
+      console.log(action.payload)
 
       saveToLocalStorage(dataCart)
       return dataCart

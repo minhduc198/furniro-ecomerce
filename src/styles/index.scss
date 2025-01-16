@@ -3,6 +3,8 @@
 
 // PAGES
 @use './pages/home';
+@use './pages/shop';
+@use './pages/product-detail';
 
 // COMPONENT
 @use './components/header';
@@ -15,4 +17,7 @@
 @use './components/cart';
 @use './components/cart-item';
 @use './components/button';
+@use './components/select';
+@use './components/breadcrumbs';
+@use './components/pagination';
 @use './common';

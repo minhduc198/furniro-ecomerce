@@ -1,6 +1,7 @@
 export const path = {
   home: '/',
   about: '/about',
-  shop: '/shop',
-  contact: '/contact'
+  product: '/product',
+  contact: '/contact',
+  productDetail: '/product/:id'
 }

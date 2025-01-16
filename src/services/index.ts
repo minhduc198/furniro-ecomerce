@@ -7,3 +7,9 @@ export async function getListProduct(page: number, limit: number): Promise<ApiRe
   const data = await response.json()
   return data
 }
+
+export async function getProductDetail(id: number): Promise<IDataProduct> {
+  const response = await fetch(`${baseUrl}/product/${id}`)
+  const data = await response.json()
+  return data
+}
