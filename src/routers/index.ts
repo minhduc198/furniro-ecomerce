@@ -3,5 +3,7 @@ export const path = {
   about: '/about',
   product: '/product',
   contact: '/contact',
-  productDetail: '/product/:id'
+  productDetail: '/product/:id',
+  productComparison: '/product-comparison',
+  cart: '/cart'
 }

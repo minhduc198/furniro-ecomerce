@@ -5,7 +5,8 @@
 @use './pages/home';
 @use './pages/shop';
 @use './pages/product-detail';
-
+@use './pages/comparison';
+@use './pages/cart-page';
 // COMPONENT
 @use './components/header';
 @use './components/footer';
@@ -14,10 +15,12 @@
 @use './components/carousel';
 @use './components/inspirationn';
 @use './components/furniture';
-@use './components/cart';
 @use './components/cart-item';
 @use './components/button';
 @use './components/select';
 @use './components/breadcrumbs';
+@use './components/banner';
 @use './components/pagination';
+@use './components/cart';
+@use './components/cart-infor';
 @use './common';

@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import { RxHamburgerMenu } from 'react-icons/rx'
+import { useLocation } from 'react-router'
 import shoppingCartIcon from '../../assets/header/icons/buy.svg'
 import favoriteIcon from '../../assets/header/icons/favourite.svg'
 import userIcon from '../../assets/header/icons/icon-profile.svg'
 import logoFull from '../../assets/header/icons/logo-full.svg'
 import searchIcon from '../../assets/header/icons/search.svg'
-import { CustomNavLink } from '../CustomNavLink'
-import { path } from '../../routers'
+import { CART_TYPE } from '../../constants'
 import useCart from '../../hooks/useCart'
 import useFavorite from '../../hooks/useFavorite'
+import { path } from '../../routers'
 import CartProduct from '../CartProduct'
-import { CART_TYPE } from '../../constants'
+import { CustomNavLink } from '../CustomNavLink'
 
 export default function Header() {
   const { cartState, setCartType } = useCart()
@@ -19,9 +20,10 @@ export default function Header() {
   const cartItemCount = cartState.items.length
   const favoriteCount = favoriteState.items.length
   const [openMenu, setOpenMenu] = useState(false)
-  const [openCart, setOpenCart] = useState(false)
+  const location = useLocation()
 
-  const toggleMenu = () => setOpenMenu(!openMenu)
+  const { openCart, setOpenCart } = useCart()
+  const toggleMenu = () => setOpenMenu((prev) => !prev)
 
   const closeCart = () => setOpenCart(false)
 
@@ -29,6 +31,14 @@ export default function Header() {
     setCartType(type)
     setOpenCart(true)
   }
+
+  useEffect(() => {
+    if (location.pathname) {
+      setOpenMenu(false)
+    }
+
+    window.scrollTo(0, 0)
+  }, [location.pathname])
 
   return (
     <React.Fragment>

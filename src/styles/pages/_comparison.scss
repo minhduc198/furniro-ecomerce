@@ -1,0 +1,20 @@
+@use '../mixin' as *;
+.comparison {
+  margin-top: 100px;
+
+  &-hero {
+    background-image: url('/img-hero-shop.png');
+    max-width: 1440px;
+    height: 316px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .comparison-hero-title {
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 72px;
+    }
+  }
+}

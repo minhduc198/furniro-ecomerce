@@ -1,6 +1,6 @@
-$SM: 576px;
-$MD: 960px;
-$LG: 1440px;
+$SM: 575px;
+$MD: 959px;
+$LG: 1439px;
 
 @mixin responsive($screen-size) {
   @if $screen-size == LG {

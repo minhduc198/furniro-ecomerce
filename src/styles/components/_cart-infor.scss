@@ -1,0 +1,121 @@
+@use '../mixin' as *;
+.cart-information {
+  display: flex;
+  align-items: center;
+
+  .cart-img {
+    width: 105px;
+    height: 105px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .cart-name {
+    margin-left: 34px;
+    width: 177px;
+    padding-right: 5px;
+    color: var(--cl-gray-300);
+  }
+
+  .cart-price {
+    min-width: 177px;
+    color: var(--cl-gray-300);
+  }
+
+  .cart-quantity {
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+    border: 1px solid var(--cl-gray-300);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline: 19px;
+    flex-shrink: 0;
+
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      padding-left: 10px;
+    }
+
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  .cart-page-subtotal {
+    margin-left: 36px;
+    min-width: 160px;
+  }
+
+  .remove-product {
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+@include responsive(MD) {
+  .cart-information {
+    .cart-img {
+      display: none;
+    }
+
+    .cart-name,
+    .cart-price,
+    .cart-quantity,
+    .cart-page-subtotal {
+      font-size: 14px;
+    }
+
+    .cart-name {
+      margin-left: 10px;
+      min-width: unset;
+      width: 104px;
+      color: var(--cl-gray-300);
+    }
+
+    .cart-price {
+      min-width: 120px;
+      color: var(--cl-gray-300);
+    }
+
+    .cart-page-subtotal {
+      margin-left: 36px;
+      min-width: 130px;
+    }
+  }
+}
+
+@include responsive(SM) {
+  .cart-information {
+    .cart-name,
+    .cart-price,
+    .cart-quantity,
+    .cart-page-subtotal {
+      font-size: 12px;
+    }
+
+    .cart-name {
+      margin-left: 10px;
+      min-width: unset;
+      width: 104px;
+      color: var(--cl-gray-300);
+    }
+
+    .cart-price {
+      min-width: 120px;
+      color: var(--cl-gray-300);
+    }
+
+    .cart-page-subtotal {
+      display: none;
+    }
+  }
+}

@@ -8,19 +8,11 @@ import useFavorite from '../../hooks/useFavorite'
 import { IDataProduct } from '../../types'
 import { useNavigate } from 'react-router'
 import { path } from '../../routers'
+import { formatCurrency } from '../../utils'
 
 interface Props {
   productItem: IDataProduct
 }
-
-// const toastSetting: ToastOptions<unknown> = {
-//   position: 'top-center',
-//   autoClose: 3000,
-//   hideProgressBar: true,
-//   draggable: true,
-//   progress: undefined,
-//   theme: 'light'
-// }
 
 export default function ProductCard({ productItem }: Props) {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -66,10 +58,10 @@ export default function ProductCard({ productItem }: Props) {
           <div className='discount-price'>
             Rp{' '}
             {!productItem.discount
-              ? productItem.price
-              : Math.floor(((productItem.price * productItem.discount) / 100) * 100) / 100}
+              ? formatCurrency(productItem.price)
+              : formatCurrency(Math.floor(productItem.price * productItem.discount))}
           </div>
-          <div className='origin-price'>{!productItem.discount ? '' : `Rp ${productItem.price}`}</div>
+          <div className='origin-price'>{!productItem.discount ? '' : `Rp ${formatCurrency(productItem.price)}`}</div>
         </div>
       </div>
       <div className='product-action'>

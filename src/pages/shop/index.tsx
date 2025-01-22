@@ -1,11 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import highQuality from '../../assets/shop/icons/high-quality.svg'
 import iconFilter1 from '../../assets/shop/icons/icon-filter1.svg'
 import iconFilter2 from '../../assets/shop/icons/icon-filter2.svg'
 import iconFilter3 from '../../assets/shop/icons/icon-filter3.svg'
-import protection from '../../assets/shop/icons/protection.svg'
-import shipping from '../../assets/shop/icons/shipping.svg'
-import sp from '../../assets/shop/icons/support.svg'
 import BreadCrumb from '../../components/BreadCrumb'
 import Pagination from '../../components/Pagination'
 import ProductCard from '../../components/ProductCard'
@@ -14,6 +10,7 @@ import { CATEGORY, SORT } from '../../constants'
 import useQueryParams from '../../hooks/useQueryParams'
 import { getListProduct } from '../../services'
 import { IDataProduct, IPagination } from '../../types'
+import Banner from '../../components/Banner'
 
 interface IShopState {
   products: IDataProduct[]
@@ -297,47 +294,7 @@ export default function Shop() {
       </div>
 
       {/* BANNER */}
-      <div className='shop-banner'>
-        <div className='banner-content'>
-          <div className='banner-img'>
-            <img src={highQuality} alt='' />
-          </div>
-          <div className='banner-context'>
-            <div className='banner-title'>High Quality</div>
-            <div className='banner-desc'>crafted from top materials</div>
-          </div>
-        </div>
-
-        <div className='banner-content'>
-          <div className='banner-img'>
-            <img src={protection} alt='' />
-          </div>
-          <div className='banner-context'>
-            <div className='banner-title'>Warranty Protection</div>
-            <div className='banner-desc'>Over 2 years</div>
-          </div>
-        </div>
-
-        <div className='banner-content'>
-          <div className='banner-img'>
-            <img src={shipping} alt='' />
-          </div>
-          <div className='banner-context'>
-            <div className='banner-title'>Free Shipping</div>
-            <div className='banner-desc'>Order over 150 $</div>
-          </div>
-        </div>
-
-        <div className='banner-content'>
-          <div className='banner-img'>
-            <img src={sp} alt='' />
-          </div>
-          <div className='banner-context'>
-            <div className='banner-title'>24 / 7 Support</div>
-            <div className='banner-desc'>Dedicated support</div>
-          </div>
-        </div>
-      </div>
+      <Banner />
     </div>
   )
 }
