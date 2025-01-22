@@ -111,40 +111,6 @@
     }
   }
 
-  &-banner {
-    margin-top: 85px;
-    background-color: var(--cl-wheat-200);
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 20px;
-    justify-content: space-between;
-    padding: 100px 53px;
-  }
-
-  .banner-content {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .banner-img {
-    width: 60px;
-    height: 60px;
-  }
-
-  .banner-title {
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 37.5px;
-  }
-
-  .banner-desc {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    color: var(--cl-gray-200);
-  }
-
   .cart-list-shop {
     margin-top: 63px;
     display: flex;
@@ -190,11 +156,6 @@
   .shop {
     margin-top: unset;
 
-    &-banner {
-      padding: var(--gutter);
-      gap: 14px;
-    }
-
     &-filter {
       gap: 20px;
     }
@@ -213,21 +174,6 @@
 
     .filter-top {
       align-items: start;
-    }
-
-    .banner-img {
-      width: 40px;
-      height: 40px;
-    }
-
-    .banner-title {
-      font-size: 20px;
-      line-height: 24px;
-    }
-
-    .banner-desc {
-      font-size: 14px;
-      line-height: 18px;
     }
   }
 }

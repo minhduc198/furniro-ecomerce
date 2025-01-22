@@ -1,22 +1,35 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
 import lock from '../../assets/shoppingCart/icons/lock.svg'
 import { CART_ACTIONS, CART_TYPE, FAVORITE_ACTIONS } from '../../constants'
 import useCart from '../../hooks/useCart'
+import useFavorite from '../../hooks/useFavorite'
 import { ICart, IDataProduct, IFavorite } from '../../types'
 import CartItem from '../CartItem'
-import useFavorite from '../../hooks/useFavorite'
+import { path } from '../../routers'
+import { formatCurrency } from '../../utils'
 
 interface Props {
   onClose: () => void
 }
 
 export default function CartProduct({ onClose }: Props) {
-  const { cartState, dispatch: cartDispatch, cartType } = useCart()
+  const navigate = useNavigate()
+  const { cartState, dispatch: cartDispatch, cartType, setOpenCart } = useCart()
   const { favoriteState, dispatch: favoriteDispatch } = useFavorite()
   const [cart, setCart] = useState<ICart | IFavorite>({
     items: [],
     total: 0
   })
+
+  const goToProductComparison = () => {
+    navigate(path.productComparison)
+  }
+
+  const goToCart = () => {
+    navigate(path.cart)
+    setOpenCart(false)
+  }
 
   const handleRemoveItem = (product: IDataProduct) => {
     if (cartType === CART_TYPE.SHOPPING) {
@@ -59,12 +72,16 @@ export default function CartProduct({ onClose }: Props) {
         <div className='cart-footer'>
           <div className='cart-subtotal'>
             <p>Subtotal</p>
-            <div className='cart-total-price'>Rs. {(cart as ICart).total.toFixed(2)}</div>
+            <div className='cart-total-price'>Rs. {formatCurrency((cart as ICart).total)}</div>
           </div>
           <div className='cart-btn'>
-            <div className='btn-cart'>Cart</div>
+            <div className='btn-cart' onClick={goToCart}>
+              Cart
+            </div>
             <div className='btn-checkout'>Checkout</div>
-            <div className='btn-comparison'>Comparison</div>
+            <div className='btn-comparison' onClick={goToProductComparison}>
+              Comparison
+            </div>
           </div>
         </div>
       )}

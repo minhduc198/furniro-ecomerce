@@ -2,6 +2,7 @@ import { IDataProduct } from '../../types'
 import cancel from '../../assets/cartItem/icons/cancelItem.svg'
 import { CART_TYPE } from '../../constants'
 import useCart from '../../hooks/useCart'
+import { formatCurrency } from '../../utils'
 
 interface Props {
   product: IDataProduct
@@ -22,7 +23,7 @@ export default function CartItem({ product, handleRemoveItem }: Props) {
             <>
               <div className='item-quantity'>{product.quantity}</div>
               <div className='X'>X</div>
-              <div className='item-price'>Rs. {product.price}</div>
+              <div className='item-price'>Rs. {formatCurrency(product.price)}</div>
             </>
           )}
         </div>

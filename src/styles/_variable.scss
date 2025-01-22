@@ -28,6 +28,7 @@
 
   @include responsive(LG) {
     --productGap: 20px;
+    --gutter: 80px;
   }
 
   @include responsive(MD) {

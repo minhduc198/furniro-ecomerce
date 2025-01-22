@@ -17,3 +17,10 @@ export function getFromLocalStorage(): ICart {
     total: 0
   }
 }
+
+export const formatCurrency = (amount: number, locale = 'en-US', currency = 'USD') => {
+  if (!amount) return 0
+  return new Intl.NumberFormat(locale, {
+    currency: currency
+  }).format(+amount.toFixed(2))
+}

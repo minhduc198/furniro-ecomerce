@@ -5,6 +5,7 @@ export enum SIZE {
   XL = 'XL'
 }
 
+export const MAX_QUANTITY_OF_PRODUCT = 100
 export const MAX_OUR_PRODUCTS = 32
 export const PRODUCT_NEW_EXPIRE = 14
 export const DOTS = '...'

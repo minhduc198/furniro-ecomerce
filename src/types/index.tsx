@@ -35,7 +35,7 @@ export type CartAction =
     }
   | {
       type: CART_ACTIONS.UPDATE
-      payload: { id: number; quantity: number }
+      payload: { id: number; quantity: number; price: number }
     }
   | {
       type: CART_ACTIONS.REMOVE
