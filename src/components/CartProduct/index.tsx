@@ -31,6 +31,11 @@ export default function CartProduct({ onClose }: Props) {
     setOpenCart(false)
   }
 
+  const goToCheckout = () => {
+    navigate(path.checkout)
+    setOpenCart(false)
+  }
+
   const handleRemoveItem = (product: IDataProduct) => {
     if (cartType === CART_TYPE.SHOPPING) {
       cartDispatch({
@@ -78,7 +83,9 @@ export default function CartProduct({ onClose }: Props) {
             <div className='btn-cart' onClick={goToCart}>
               Cart
             </div>
-            <div className='btn-checkout'>Checkout</div>
+            <div className='btn-checkout' onClick={goToCheckout}>
+              Checkout
+            </div>
             <div className='btn-comparison' onClick={goToProductComparison}>
               Comparison
             </div>

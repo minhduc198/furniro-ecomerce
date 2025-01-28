@@ -1,6 +1,7 @@
 import { ApiResponse, IDataProduct } from '../types'
 
-const baseUrl = 'https://furniro-api-j4bw.onrender.com'
+// const baseUrl = 'https://furniro-api-j4bw.onrender.com'
+const baseUrl = 'http://localhost:4000'
 
 export async function getListProduct(page: number, limit: number): Promise<ApiResponse<IDataProduct>> {
   const response = await fetch(`${baseUrl}/product?page=${page}&limit=${limit}`)

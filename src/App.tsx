@@ -8,6 +8,7 @@ import ProductComparison from './pages/product-comparison'
 import ProductDetail from './pages/product-detail'
 import Shop from './pages/shop'
 import { path } from './routers'
+import CheckOut from './pages/check-out'
 
 function App() {
   const element = useRoutes([
@@ -39,7 +40,9 @@ function App() {
 
         { path: path.productComparison, element: <ProductComparison /> },
 
-        { path: path.cart, element: <CartPage /> }
+        { path: path.cart, element: <CartPage /> },
+
+        { path: path.checkout, element: <CheckOut /> }
       ]
     }
   ])

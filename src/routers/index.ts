@@ -5,5 +5,6 @@ export const path = {
   contact: '/contact',
   productDetail: '/product/:id',
   productComparison: '/product-comparison',
-  cart: '/cart'
+  cart: '/cart',
+  checkout: '/checkout'
 }

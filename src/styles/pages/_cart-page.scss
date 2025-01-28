@@ -2,27 +2,6 @@
 .cart-page {
   margin-top: 100px;
 
-  &-hero {
-    background-image: url('/img-hero-shop.png');
-    max-width: 1440px;
-    height: 316px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .cart-page-hero-title {
-      font-weight: 500;
-      font-size: 48px;
-      line-height: 72px;
-    }
-  }
-
-  .logo-cart {
-    width: 77px;
-    height: 77px;
-  }
-
   .cart-page-pay {
     padding: 72px 100px 63px;
     display: flex;

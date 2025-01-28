@@ -1,7 +1,6 @@
-import logo from '../../assets/common/logo-funiro.svg'
 import Banner from '../../components/Banner'
-import BreadCrumb from '../../components/BreadCrumb'
 import CartInfo from '../../components/CartInfor'
+import HeroBreadCrumb from '../../components/HeroBreadCrumb'
 import useCart from '../../hooks/useCart'
 import { formatCurrency } from '../../utils'
 
@@ -10,13 +9,7 @@ export default function CartPage() {
 
   return (
     <div className='container cart-page'>
-      <div className='cart-page-hero'>
-        <div className='logo-cart'>
-          <img src={logo} alt='' />
-        </div>
-        <div className='cart-page-hero-title'>Cart</div>
-        <BreadCrumb />
-      </div>
+      <HeroBreadCrumb page={'Cart'} />
 
       <div className='cart-page-pay'>
         <div className='cart-page-product'>

@@ -2,7 +2,7 @@ import { ISelectOption } from '../../types'
 
 interface Props {
   options: ISelectOption[]
-  handleData: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  handleData?: (e: React.ChangeEvent<HTMLSelectElement>) => void
   defaultValue: number | string
 }
 

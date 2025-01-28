@@ -1,0 +1,20 @@
+.bread-crumb-hero {
+  background-image: url('/img-hero-shop.png');
+  max-width: 1440px;
+  height: 316px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bread-crumb-title {
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 72px;
+}
+
+.logo-bread-crumb {
+  width: 77px;
+  height: 77px;
+}
