@@ -24,3 +24,11 @@ export const formatCurrency = (amount: number, locale = 'en-US', currency = 'USD
     currency: currency
   }).format(+amount.toFixed(2))
 }
+
+export const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  })
+}

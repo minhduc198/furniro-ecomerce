@@ -1,0 +1,60 @@
+@use '../mixin' as *;
+.compare-line {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-size: 20px;
+  line-height: 25px;
+
+  .compare-label {
+    padding-left: 42px;
+    padding-right: 18px;
+    padding-block: 17px;
+    border-right: 1px solid var(--cl-gray-120);
+    text-transform: capitalize;
+  }
+
+  .left-value,
+  .right-value {
+    padding-block: 17px;
+    padding-left: 62px;
+    padding-right: 56px;
+    border-right: 1px solid var(--cl-gray-120);
+  }
+}
+
+@include responsive(LG) {
+  .compare-line {
+    font-size: 18px;
+    line-height: 22px;
+
+    .compare-label {
+      padding-left: 20px;
+      padding-right: 10px;
+    }
+
+    .left-value,
+    .right-value {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+}
+
+@include responsive(MD) {
+  .compare-line {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@include responsive(SM) {
+  .compare-line {
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .compare-label {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}

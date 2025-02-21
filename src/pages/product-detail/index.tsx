@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AiFillTwitterCircle } from 'react-icons/ai'
 import { FaFacebook, FaLinkedin } from 'react-icons/fa6'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import halfStar from '../../assets/productDetail/icons/halfStar.svg'
 import star from '../../assets/productDetail/icons/star.svg'
 import ProductCard from '../../components/ProductCard'
@@ -10,6 +10,7 @@ import { getListProduct, getProductDetail } from '../../services'
 import { IDataProduct } from '../../types'
 import { toast, ToastOptions } from 'react-toastify'
 import useCart from '../../hooks/useCart'
+import { path } from '../../routers'
 
 interface IFormProduct {
   size: SIZE
@@ -213,7 +214,10 @@ export default function ProductDetail() {
             <div className='btn' onClick={() => handleAddToCart(detailData)}>
               Add To Cart
             </div>
-            <div className='btn'>+ Compare</div>
+
+            <Link to={`${path.comparison}/${detailData?.id}`}>
+              <div className='btn'>+ Compare</div>
+            </Link>
           </div>
           <div className='line'></div>
           <div className='more-info'>

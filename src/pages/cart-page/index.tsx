@@ -1,11 +1,18 @@
+import { useNavigate } from 'react-router'
 import Banner from '../../components/Banner'
 import CartInfo from '../../components/CartInfor'
 import HeroBreadCrumb from '../../components/HeroBreadCrumb'
 import useCart from '../../hooks/useCart'
 import { formatCurrency } from '../../utils'
+import { path } from '../../routers'
 
 export default function CartPage() {
   const { cartState } = useCart()
+  const navigate = useNavigate()
+
+  const goToCheckout = () => {
+    navigate(path.checkout)
+  }
 
   return (
     <div className='container cart-page'>
@@ -39,7 +46,9 @@ export default function CartPage() {
             <p>Total</p>
             <p>Rs. {formatCurrency(cartState.total)}</p>
           </div>
-          <div className='btn-checkout'>Check Out</div>
+          <div className='btn-checkout' onClick={goToCheckout}>
+            Check Out
+          </div>
         </div>
       </div>
 

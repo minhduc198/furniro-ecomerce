@@ -1,0 +1,21 @@
+@use '../mixin' as *;
+
+.product-page {
+  margin-top: 100px;
+
+  .list-view-product {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 50px;
+  }
+}
+
+@include responsive(LG) {
+  .product-page {
+    .list-view-product {
+      padding-inline: var(--gutter);
+    }
+  }
+}

@@ -11,7 +11,7 @@ export default function BreadCrumb() {
         <NavLink to={path.home}>Home </NavLink>
       </div>
       <img src={arrow} alt='' />
-      <p>{location.pathname.replace('/', '')}</p>
+      <p>{location.pathname.split('/')[1]}</p>
     </div>
   )
 }

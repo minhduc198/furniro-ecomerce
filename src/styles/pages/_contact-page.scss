@@ -1,0 +1,126 @@
+@use '../mixin' as *;
+.contact-page {
+  margin-top: 100px;
+
+  .contact-wrapper {
+    margin-top: 122px;
+    padding-inline: 100px;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: 8fr 4fr;
+  }
+
+  .contact-reel {
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+  }
+
+  .post-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-contact {
+    position: relative;
+  }
+
+  .find-post {
+    padding: 0 41px 61px 41px;
+  }
+
+  .find-loop {
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
+
+  .input-find-category {
+    width: 100%;
+    height: 58px;
+    outline: none;
+    border: 1px solid var(--cl-gray-300);
+    color: var(--cl-gray-300);
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+  }
+
+  .contact-category {
+    margin-top: 43px;
+    padding-right: 24px;
+    padding-left: 36px;
+  }
+
+  .xl-text {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+  }
+
+  .list-category {
+    margin-top: 33px;
+    color: var(--cl-gray-300);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .each-category,
+  .category-quantity {
+    display: flex;
+    flex-direction: column;
+    gap: 41px;
+  }
+
+  .recent-post {
+    margin-top: 57px;
+    padding-right: 24px;
+    padding-left: 76px;
+  }
+
+  .list-mini-post {
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+    margin-top: 26px;
+  }
+}
+
+@include responsive(LG) {
+  .contact-page {
+    .contact-wrapper {
+      padding-inline: var(--gutter);
+    }
+  }
+}
+
+@include responsive(MD) {
+  .contact-page {
+    .contact-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+}
+
+@include responsive(SM) {
+  .contact-page {
+    .recent-post {
+      padding-left: unset;
+      margin-top: unset;
+    }
+
+    .post-info {
+      gap: 20px;
+    }
+
+    .find-post {
+      padding-inline: unset;
+    }
+
+    .contact-category {
+      padding-inline: unset;
+    }
+  }
+}

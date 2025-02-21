@@ -1,18 +1,15 @@
-interface Props {
+type Props = {
   title: string
-  placeholder?: string
-  handleData: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
-}
+  isFormError?: boolean
+} & React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
-export default function Input({ title, placeholder, handleData }: Props) {
+export default function Input({ title, isFormError, placeholder, ...rest }: Props) {
   return (
-    <form>
-      <label className='title-input' htmlFor={title}>
-        {title}
-        <div className='input-content'>
-          <input type='text' id={title} placeholder={placeholder} onChange={handleData} />
-        </div>
-      </label>
-    </form>
+    <label className='title-input'>
+      {title}
+      <div className={`input-content ${isFormError ? 'form-error' : ''}`}>
+        <input {...rest} placeholder={placeholder} />
+      </div>
+    </label>
   )
 }

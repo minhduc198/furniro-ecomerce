@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import lock from '../../assets/shoppingCart/icons/lock.svg'
-import { CART_ACTIONS, CART_TYPE, FAVORITE_ACTIONS } from '../../constants'
+import { CART_ACTIONS, CART_COMPARE_PARAM, CART_TYPE, FAVORITE_ACTIONS } from '../../constants'
 import useCart from '../../hooks/useCart'
 import useFavorite from '../../hooks/useFavorite'
 import { ICart, IDataProduct, IFavorite } from '../../types'
@@ -23,7 +23,8 @@ export default function CartProduct({ onClose }: Props) {
   })
 
   const goToProductComparison = () => {
-    navigate(path.productComparison)
+    navigate(`${path.comparison}/${CART_COMPARE_PARAM}`)
+    setOpenCart(false)
   }
 
   const goToCart = () => {

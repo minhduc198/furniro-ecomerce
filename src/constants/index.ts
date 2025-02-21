@@ -9,6 +9,7 @@ export const MAX_QUANTITY_OF_PRODUCT = 100
 export const MAX_OUR_PRODUCTS = 32
 export const PRODUCT_NEW_EXPIRE = 14
 export const DOTS = '...'
+export const CART_COMPARE_PARAM = 'cart'
 
 export enum CART_ACTIONS {
   ADD = 'ADD',
