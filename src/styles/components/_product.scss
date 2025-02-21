@@ -1,0 +1,40 @@
+.view-product-wrapper {
+  width: 280px;
+  cursor: pointer;
+
+  .view-product-img {
+    width: 280px;
+    height: 177px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .view-product-name {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30.36px;
+    margin-top: 18px;
+  }
+
+  .view-product-price {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    margin-top: 6px;
+  }
+
+  .view-product-rate {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .star {
+    display: flex;
+  }
+
+  .review {
+    padding-left: 8px;
+    border-left: 1px solid var(--cl-gray-300);
+  }
+}

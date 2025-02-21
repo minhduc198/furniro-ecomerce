@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import emailjs from 'emailjs-com'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import Banner from '../../components/Banner'
 import HeroBreadCrumb from '../../components/HeroBreadCrumb'
 import Input from '../../components/Input'
 import Select from '../../components/Select'
 import useCart from '../../hooks/useCart'
 import { formatCurrency } from '../../utils'
-import Banner from '../../components/Banner'
 
-export default function CheckOut() {
+export default function CheckoutPage() {
   const { cartState } = useCart()
   const [option, setOption] = useState(0)
 
@@ -55,44 +56,89 @@ export default function CheckOut() {
     moreInfo: ''
   })
 
+  const [isFullInfo, setIsFullInfo] = useState(true)
+
+  const [formError, setFormError] = useState<{
+    email: string
+    phone: string
+    zipCode: string
+  }>({
+    email: '',
+    phone: '',
+    zipCode: ''
+  })
+
   const getMethod = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const value = Number(e.target.value)
     setOption(value)
   }
 
-  const changeOption =
-    (
-      name:
-        | 'firstName'
-        | 'lastName'
-        | 'companyName'
-        | 'country'
-        | 'address'
-        | 'city'
-        | 'province'
-        | 'zip'
-        | 'phone'
-        | 'email'
-        | 'moreInfo'
-    ) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      e.preventDefault()
-      const value = e.target.value
-      setAllInfo((prev) => ({
-        ...prev,
-        [name]: value
-      }))
+  const changeOption = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    e.preventDefault()
+    const { value, name } = e.target
+    setAllInfo((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+
+    if (name === 'email') {
+      setFormError({ ...formError, email: '' })
     }
 
-  const sendEmail = (data: any) => {
-    emailjs.send('service_z030q34', 'template_q5y4ltk', data, 'pQy_Diuo7Dv0EfIBm').then(
-      (result) => {
-        alert('Email đã được gửi!' + result.text)
-      },
-      (error) => {
-        alert('Gửi email thất bại!' + error.text)
-      }
-    )
+    if (name === 'phone') {
+      setFormError({ ...formError, phone: '' })
+    }
+
+    if (name === 'zip') {
+      setFormError({ ...formError, zipCode: '' })
+    }
+  }
+  // const changeOption = (name: keyof typeof allInfo) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   e.preventDefault()
+  //   const value = e.target.value
+  //   setAllInfo((prev) => ({
+  //     ...prev,
+  //     [name]: value
+  //   }))
+  // }
+
+  useEffect(() => {
+    if (allInfo.email && allInfo.phone) {
+      setIsFullInfo(false)
+    } else {
+      setIsFullInfo(true)
+    }
+  }, [allInfo.zip, allInfo.email, allInfo.phone])
+
+  const sendEmail = (data: Record<string, unknown>) => {
+    let validForm = true
+    const strictEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!strictEmailRegex.test(allInfo.email)) {
+      setFormError((prev) => ({ ...prev, email: 'Email không đúng định dạng.' }))
+      validForm = false
+    }
+
+    const phoneRegex = /^(\+?\d{1,3})?[-.\s]?(\(?\d{3}\)?)?[-.\s]?\d{3}[-.\s]?\d{4}$/
+    if (!phoneRegex.test(allInfo.phone)) {
+      setFormError((prev) => ({ ...prev, phone: 'Số điện thoại không đúng định dạng.' }))
+      validForm = false
+    }
+
+    if (!allInfo.zip.trim()) {
+      setFormError((prev) => ({ ...prev, zipCode: 'Zip code không được để trống' }))
+      validForm = false
+    }
+
+    if (validForm) {
+      emailjs.send('service_z030q34', 'template_q5y4ltk', data, 'pQy_Diuo7Dv0EfIBm').then(
+        (result) => {
+          toast.success('Send email!' + result.text)
+        },
+        (error) => {
+          toast.error('Cannot send email!' + error.text)
+        }
+      )
+    }
   }
 
   return (
@@ -103,32 +149,56 @@ export default function CheckOut() {
           <div className='all-info'>
             <h2>Billing details</h2>
             <div className='full-name'>
-              <Input title='First name' handleData={changeOption('firstName')} />
-              <Input title='Last name' handleData={changeOption('lastName')} />
+              <Input title='First name' type='text' name='firstName' onChange={changeOption} />
+              <Input title='Last name' type='text' name='lastName' onChange={changeOption} />
             </div>
-            <Input title='Company Name (Optional)' handleData={changeOption('companyName')} />
+            <Input title='Company Name (Optional)' type='text' name='companyName' onChange={changeOption} />
             <div>
               <div className='title-select'>Country / Region</div>
               <div className='select-info'>
-                <Select options={countryOption} defaultValue={allInfo.country} handleData={changeOption('country')} />
+                <Select options={countryOption} defaultValue={allInfo.country} name='country' onChange={changeOption} />
               </div>
             </div>
-            <Input title='Street address' handleData={changeOption('address')} />
-            <Input title='Town / City' handleData={changeOption('city')} />
+            <Input title='Street address' type='text' name='address' onChange={changeOption} />
+            <Input title='Town / City' type='text' name='city' onChange={changeOption} />
             <div>
               <div className='title-select'>Province</div>
               <div className='select-info'>
-                <Select
-                  options={provinceOption}
-                  defaultValue={allInfo.province}
-                  handleData={changeOption('province')}
-                />
+                <Select options={provinceOption} value={allInfo.province} name='province' onChange={changeOption} />
               </div>
             </div>
-            <Input title='ZIP code' handleData={changeOption('zip')} />
-            <Input title='Email address' handleData={changeOption('email')} />
-            <Input title='Phone' handleData={changeOption('phone')} />
-            <Input title='' placeholder='Additional information' handleData={changeOption('moreInfo')} />
+            <div>
+              <Input
+                title='ZIP code'
+                type='text'
+                name='zip'
+                isFormError={!!formError.zipCode}
+                onChange={changeOption}
+              />
+              {formError.zipCode && <div className='help-text'>{formError.zipCode}</div>}
+            </div>
+            <div>
+              <Input
+                title='Email address'
+                type='email'
+                name='email'
+                isFormError={!!formError.email}
+                onChange={changeOption}
+              />
+              {formError.email && <div className='help-text'>{formError.email}</div>}
+            </div>
+            <div>
+              <Input
+                title='Phone'
+                type='text'
+                name='phone'
+                className='no-spinner'
+                isFormError={!!formError.phone}
+                onChange={changeOption}
+              />
+              {formError.phone && <div className='help-text'>{formError.phone}</div>}
+            </div>
+            <Input title='' type='text' placeholder='Additional information' name='moreInfo' onChange={changeOption} />
           </div>
         </div>
         <div className='checkout-product'>
@@ -203,7 +273,11 @@ export default function CheckOut() {
             Your personal data will be used to support your experience throughout this website, to manage access to your
             account, and for other purposes described in our <span>privacy policy.</span>
           </div>
-          <button className='btn-order' onClick={() => sendEmail(allInfo)} disabled={false}>
+          <button
+            className={`btn-order ${isFullInfo && 'btn-disable'}`}
+            onClick={() => sendEmail(allInfo)}
+            disabled={isFullInfo}
+          >
             Place order
           </button>
         </div>

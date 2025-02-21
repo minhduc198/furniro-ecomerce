@@ -4,7 +4,8 @@ export const path = {
   product: '/product',
   contact: '/contact',
   productDetail: '/product/:id',
-  productComparison: '/product-comparison',
+  productComparison: '/product-comparison/:id',
   cart: '/cart',
-  checkout: '/checkout'
+  checkout: '/checkout',
+  comparison: '/product-comparison'
 }

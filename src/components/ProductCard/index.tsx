@@ -4,10 +4,10 @@ import compare from '../../assets/cardProduct/icons/compare.svg'
 import share from '../../assets/cardProduct/icons/share.svg'
 import { FAVORITE_ACTIONS, PRODUCT_NEW_EXPIRE } from '../../constants'
 // import useCart from '../../hooks/useCart'
-import useFavorite from '../../hooks/useFavorite'
-import { IDataProduct } from '../../types'
 import { useNavigate } from 'react-router'
+import useFavorite from '../../hooks/useFavorite'
 import { path } from '../../routers'
+import { IDataProduct } from '../../types'
 import { formatCurrency } from '../../utils'
 
 interface Props {
@@ -30,6 +30,10 @@ export default function ProductCard({ productItem }: Props) {
     navigate(`${path.product}/${productItem.id}`)
   }
 
+  const goToComparison = () => {
+    navigate(`${path.comparison}/${productItem.id}`)
+  }
+
   const isNewProduct = useMemo(() => {
     const currentDate = new Date().getTime()
     const productDate = new Date(productItem.createdAt).getTime()
@@ -44,7 +48,7 @@ export default function ProductCard({ productItem }: Props) {
 
   return (
     <div className='product-item'>
-      <div className='product-img'>
+      <div className='CheckoutPage'>
         <img src={productItem.images[0]} alt='' />
       </div>
       <div className='product-state'>
@@ -80,7 +84,7 @@ export default function ProductCard({ productItem }: Props) {
             <div className='menu-icon'>
               <img src={compare} alt='' />
             </div>
-            <p>Compare</p>
+            <p onClick={goToComparison}>Compare</p>
           </div>
 
           <div className='menu-action' onClick={handleFavorite}>

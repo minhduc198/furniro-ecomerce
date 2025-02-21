@@ -12,6 +12,10 @@
   overflow: hidden;
   padding-inline: 29px;
 
+  &.form-error {
+    border: 1px solid var(--cl-red);
+  }
+
   input {
     width: 100%;
     height: 100%;

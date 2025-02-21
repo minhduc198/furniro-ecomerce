@@ -65,3 +65,13 @@ export interface IPagination {
   pageNumber: number
   pageSize: number
 }
+
+export interface IPost {
+  id: number
+  image: string
+  author: string
+  createdAt: string
+  category: string
+  title: string
+  content: string
+}

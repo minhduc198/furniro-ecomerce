@@ -8,6 +8,9 @@
 @use './pages/comparison';
 @use './pages/cart-page';
 @use './pages/checkout';
+@use './pages/contact-page';
+@use './pages/product-page';
+
 // COMPONENT
 @use './components/header';
 @use './components/footer';
@@ -26,4 +29,9 @@
 @use './components/cart-infor';
 @use './components/hero-breadcrumbs';
 @use './components/input';
+@use './components/contact-reel';
+@use './components/more-reel';
+@use './components/product';
+@use './components/compare-line';
+
 @use './common';

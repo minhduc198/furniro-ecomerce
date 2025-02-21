@@ -1,16 +1,15 @@
 import { ISelectOption } from '../../types'
 
-interface Props {
+interface Props extends React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
   options: ISelectOption[]
-  handleData?: (e: React.ChangeEvent<HTMLSelectElement>) => void
-  defaultValue: number | string
+  handleData: (e: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
-export default function Select({ options, handleData, defaultValue }: Props) {
+export default function Select({ options, handleData, ...rest }: Props) {
   return (
-    <select value={defaultValue} onChange={handleData}>
+    <select {...rest}>
       {options.map((item) => (
-        <option key={item.value} value={item.value}>
+        <option key={item.value} value={item.value} onChange={() => handleData}>
           {item.label}
         </option>
       ))}
