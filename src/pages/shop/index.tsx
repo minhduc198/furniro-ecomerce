@@ -247,25 +247,21 @@ export default function Shop() {
             <div className='filter-show'>
               <div>Show</div>
               <div className='select-limit'>
-                <Select options={showOptions} handleData={handleFilter('limit')} defaultValue={pagination.pageSize} />
+                <Select options={showOptions} onChange={handleFilter('limit')} defaultValue={pagination.pageSize} />
               </div>
             </div>
             <div className='filter-sort'>
               <div>Sort by</div>
               <div className='select-sort'>
-                <Select options={sortOptions} handleData={handleFilter('sort')} defaultValue={''} />
+                <Select options={sortOptions} onChange={handleFilter('sort')} defaultValue={''} />
               </div>
             </div>
           </div>
         </div>
         {onOpenFilter && (
           <div className='filter-bottom'>
-            <Select
-              options={categoryOptions}
-              handleData={handleFilter('category')}
-              defaultValue={queryParams.category}
-            />
-            <Select options={starOption} handleData={handleFilter('rate')} defaultValue={queryParams.rate} />
+            <Select options={categoryOptions} onChange={handleFilter('category')} defaultValue={queryParams.category} />
+            <Select options={starOption} onChange={handleFilter('rate')} defaultValue={queryParams.rate} />
           </div>
         )}
       </div>

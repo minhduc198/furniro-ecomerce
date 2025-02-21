@@ -1,6 +1,6 @@
 import { ApiResponse, IDataProduct, IPost } from '../types'
 
-const baseUrl = 'https://furniro-api-j4bw.onrender.com'
+const baseUrl = 'https://furniro-api-wqx2.onrender.com'
 // const baseUrl = 'http://localhost:4000'
 
 export async function getListProduct(page: number, limit: number): Promise<ApiResponse<IDataProduct>> {
