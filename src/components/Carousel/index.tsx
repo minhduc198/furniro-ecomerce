@@ -47,18 +47,6 @@ export default function Carousel() {
       <div className='slider-slide'>
         <img src={slide4} alt='' />
       </div>
-      {/* <div className='slider-slide'>
-        <img src={slide1} alt='' />
-      </div>
-      <div className='slider-slide'>
-        <img src={slide2} alt='' />
-      </div>
-      <div className='slider-slide'>
-        <img src={slide3} alt='' />
-      </div>
-      <div className='slider-slide'>
-        <img src={slide4} alt='' />
-      </div> */}
     </Slider>
   )
 }
